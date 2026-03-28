@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Gatinhos</h1>
+
+<img id="catImage" width="300">
+
+<br><br>
+
+<button onclick="buscarGato()">Buscar Gatinho</button>
+
+<script>
+async function buscarGato() {
+  try {
+    const resposta = await fetch('https://api.thecatapi.com/v1/images/search');
+    const dados = await resposta.json();
+
+    document.getElementById('catImage').src = dados[0].url;
+
+  } catch (erro) {
+    document.body.innerHTML = "<h2>Erro ao carregar as imagens. Tente novamente.</h2>";
+  }
+}
+
+buscarGato();
+</script>
+
+</body>
+</html>
